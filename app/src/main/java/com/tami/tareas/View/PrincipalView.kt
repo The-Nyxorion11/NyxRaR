@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -41,7 +42,7 @@ fun appNavigation(paddingValues: PaddingValues) {
             menu(Modifier.fillMaxSize().padding(paddingValues), navController = navController)
         }
         composable(Screen.Webs){
-            webApps(navController = navController)
+            webApps(Modifier.padding(paddingValues), navController = navController)
         }
     }
 }
@@ -51,7 +52,6 @@ fun appNavigation(paddingValues: PaddingValues) {
 
 @Composable
 fun menu(modifier: Modifier, navController: NavController) {
-
 
     LazyColumn (modifier = modifier){
         item {
