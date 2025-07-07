@@ -3,7 +3,6 @@ package com.tami.tareas.View.menus
 //importaciones para los links
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.net.Uri
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.ui.platform.LocalContext
