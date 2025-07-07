@@ -6,6 +6,7 @@ plugins {
 }
 
 android {
+
     namespace = "com.tami.tareas"
     compileSdk = 35
 
@@ -52,8 +53,10 @@ dependencies {
 
     // --- Compose BOM (Bill of Materials) ---
     // ¡SOLO UNA VEZ! Preferiblemente sin la versión en el alias si la manejas en libs.versions.toml
-    implementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.ui.test.junit4)
+    val composeBom = platform(libs.androidx.compose.bom)
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+
 
     // --- Dependencias básicas de Compose UI y Material ---
     // Usando los alias más comunes/limpios. Asegúrate de que estos alias existan y apunten a las librerías correctas en libs.versions.toml
@@ -61,12 +64,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.ui)
-    implementation(libs.ui.graphics)
-    implementation(libs.ui.tooling.preview) // Necesario para la anotación @Preview
-    implementation(libs.material3)
 
-    implementation(platform(libs.androidx.compose.bom.v20240400))
+
 
     // --- Navegación de Compose ---
     // ¡SOLO UNA VEZ! Esta es la clave para 'composable'
@@ -74,7 +73,6 @@ dependencies {
 
     // --- Dependencias de Testing ---
     debugImplementation(libs.androidx.compose.ui.ui.tooling)
-    debugImplementation(libs.ui.test.manifest)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -83,6 +81,6 @@ dependencies {
     // --- Debugging y Herramientas ---
     debugImplementation(libs.androidx.ui.tooling) // Para el preview en el IDE
     debugImplementation(libs.androidx.ui.test.manifest) // Para pruebas de U
-    debugImplementation(libs.ui.tooling)
+
 
 }
