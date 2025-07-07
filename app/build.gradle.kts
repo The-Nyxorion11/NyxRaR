@@ -53,6 +53,7 @@ dependencies {
     // --- Compose BOM (Bill of Materials) ---
     // ¡SOLO UNA VEZ! Preferiblemente sin la versión en el alias si la manejas en libs.versions.toml
     implementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.ui.test.junit4)
 
     // --- Dependencias básicas de Compose UI y Material ---
     // Usando los alias más comunes/limpios. Asegúrate de que estos alias existan y apunten a las librerías correctas en libs.versions.toml
@@ -72,6 +73,8 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
 
     // --- Dependencias de Testing ---
+    debugImplementation(libs.androidx.compose.ui.ui.tooling)
+    debugImplementation(libs.ui.test.manifest)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
