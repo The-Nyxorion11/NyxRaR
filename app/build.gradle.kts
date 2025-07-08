@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.devtools.ksp")
 
 }
 
@@ -81,6 +82,10 @@ dependencies {
     // --- Debugging y Herramientas ---
     debugImplementation(libs.androidx.ui.tooling) // Para el preview en el IDE
     debugImplementation(libs.androidx.ui.test.manifest) // Para pruebas de U
+
+    //room (base de datos)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler.v250)
 
 
 }
