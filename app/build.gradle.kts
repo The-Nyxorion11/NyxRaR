@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("com.google.devtools.ksp")
-
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.0.0"
 }
 
 android {
@@ -84,8 +84,10 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest) // Para pruebas de U
 
     //room (base de datos)
-    implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.compiler.v250)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+
+    implementation(libs.kotlinx.serialization.json.v163)
 
 
 }
