@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -22,13 +23,11 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.composable
-import com.tami.tareas.View.menus.horario
 import com.tami.tareas.View.menus.webApps
 
 object Screen {
     const val Menu = "menu"
     const val Webs = "webs"
-    const val Horario = "horario"
 }
 
 @Composable
@@ -45,9 +44,6 @@ fun appNavigation(paddingValues: PaddingValues) {
         composable(Screen.Webs){
             webApps(Modifier.padding(paddingValues), navController = navController)
         }
-        composable (Screen.Horario){
-            horario(Modifier.padding(paddingValues), navController = navController)
-        }
     }
 }
 
@@ -62,9 +58,6 @@ fun menu(modifier: Modifier, navController: NavController) {
 
             Box(modifier = Modifier.padding(16.dp)){
                 web(Modifier.fillMaxWidth().height(100.dp), navController)
-            }
-            Box(modifier = Modifier.padding(16.dp)){
-                Horario(Modifier.fillMaxWidth().height(100.dp), navController)
             }
         }
     }
@@ -82,25 +75,7 @@ fun web(modifier: Modifier, navController: NavController) {
             horizontalArrangement = Arrangement.Center,
         ){
             Text(
-                text = "🌐Webs",
-                textAlign = TextAlign.Center,
-                fontSize = 50.sp
-            )
-        }
-    }
-}
-
-@Composable
-fun Horario(modifier: Modifier, navController: NavController) {
-
-    Card (modifier= modifier, onClick = {navController.navigate(Screen.Horario)}){
-        Row (
-            Modifier.fillMaxSize(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center,
-        ){
-            Text(
-                text = "🕛Horario",
+                text = "Webs",
                 textAlign = TextAlign.Center,
                 fontSize = 50.sp
             )

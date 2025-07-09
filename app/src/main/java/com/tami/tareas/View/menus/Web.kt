@@ -11,7 +11,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -29,8 +28,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.tami.tareas.R
 import androidx.core.net.toUri
-import androidx.navigation.NavController
-import com.tami.tareas.View.Screen
 
 val educaCityLink: String = "https://www.educa.city"
 val ciafDigitalLink: String = "https://www.ciaf.digital"
@@ -51,11 +48,6 @@ fun webApps(modifier: Modifier, navController: NavHostController) {
             //gemini
             Box(modifier = Modifier.padding(16.dp)){
                 geminiIA(Modifier.fillMaxWidth())
-            }
-
-            //retroceder
-            Box(modifier = Modifier.padding(16.dp)){
-                backWeb(Modifier.fillMaxWidth(), navController)
             }
         }
     }
@@ -201,26 +193,6 @@ fun geminiIA(modifier: Modifier) {
             Image(painter = painterResource(id = R.drawable.gemini), contentDescription = "gemini", modifier= Modifier.width(50.dp).height(50.dp))
             Text(
                 text = "Gemini IA",
-                textAlign = TextAlign.Center,
-                fontSize = 30.sp,
-                modifier = Modifier.padding(16.dp)
-            )
-        }
-    }
-}
-
-
-@Composable
-fun backWeb(modifier: Modifier, navController: NavController) {
-
-    Card (modifier= modifier, onClick = {navController.navigate(Screen.Menu)}){
-        Row (
-            Modifier.fillMaxWidth().height(100.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center,
-        ){
-            Text(
-                text = "🔙Atrás",
                 textAlign = TextAlign.Center,
                 fontSize = 30.sp,
                 modifier = Modifier.padding(16.dp)
