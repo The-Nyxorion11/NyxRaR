@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("com.google.devtools.ksp")
-    id("org.jetbrains.kotlin.plugin.serialization") version "2.0.0"
 }
 
 android {
@@ -83,11 +82,19 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling) // Para el preview en el IDE
     debugImplementation(libs.androidx.ui.test.manifest) // Para pruebas de U
 
-    //room (base de datos)
-    implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.kotlinx.coroutines.android)
+    //implementations of room
 
-    implementation(libs.kotlinx.serialization.json.v163)
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    // ViewModel utilities for Compose
+    implementation (libs.androidx.lifecycle.viewmodel.compose.v280)
+    // LiveData (if you prefer LiveData over StateFlow)
+    implementation (libs.androidx.lifecycle.livedata.ktx)
+    // Kotlinx Coroutines (for async operations)
+    implementation (libs.kotlinx.coroutines.core)
+    implementation (libs.kotlinx.coroutines.android)
 
 
 }

@@ -35,6 +35,7 @@ import com.tami.tareas.View.Screen
 val educaCityLink: String = "https://www.educa.city"
 val ciafDigitalLink: String = "https://www.ciaf.digital"
 val geminiLink : String = "https://gemini.google.com/"
+val chatgpt: String = "https://chatgpt.com/"
 
 @Composable
 fun webApps(modifier: Modifier, navController: NavHostController) {
@@ -51,6 +52,10 @@ fun webApps(modifier: Modifier, navController: NavHostController) {
             //gemini
             Box(modifier = Modifier.padding(16.dp)){
                 geminiIA(Modifier.fillMaxWidth())
+            }
+
+            Box(modifier = Modifier.padding(16.dp)){
+                chatgptIA(Modifier.fillMaxWidth())
             }
 
             //retroceder
@@ -209,6 +214,53 @@ fun geminiIA(modifier: Modifier) {
     }
 }
 
+@SuppressLint("QueryPermissionsNeeded")
+@Composable
+fun chatgptIA(modifier: Modifier) {
+    //para el context del lanzador a la pagina web
+    val context = LocalContext.current
+
+    Card (modifier= modifier, onClick = {
+        //codigo para el link
+        val webPage = chatgpt.toUri()
+
+        val intent = Intent(Intent.ACTION_VIEW, webPage)
+
+        //buena practica para evitar crasheos si no tengo un navegador
+        if (intent.resolveActivity(context.packageManager) != null){
+            try {
+                context.startActivity(intent)
+            }catch (e : Exception){
+                Log.e("ERROR_ABRIR_WEB", "Error al intentar ebrir la web: ${e.message}", e)
+                //avisa a el usuario que hubo un error
+                Toast.makeText(context, "No se pudo abrir la web: ${e.message}", Toast.LENGTH_LONG).show()
+            }
+        }else{
+
+            Log.e("ERROR_WEB", "Hay un error al lanzar el navegador no se encontro la url de la web")
+            Toast.makeText(
+                context,
+                "No se encontró una aplicación para abrir la web. Por favor, instala un navegador.",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+
+    }){
+        Row (
+            Modifier.fillMaxWidth().height(100.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center,
+        ){
+            Image(painter = painterResource(id = R.drawable.chatgpt), contentDescription = "chatgpt", modifier= Modifier.width(50.dp).height(50.dp))
+            Text(
+                text = "ChatGPT",
+                textAlign = TextAlign.Center,
+                fontSize = 30.sp,
+                modifier = Modifier.padding(16.dp)
+            )
+        }
+    }
+}
 
 @Composable
 fun backWeb(modifier: Modifier, navController: NavController) {

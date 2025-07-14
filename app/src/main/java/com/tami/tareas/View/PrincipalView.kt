@@ -23,12 +23,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.composable
 import com.tami.tareas.View.menus.horario
+import com.tami.tareas.View.menus.registerVersions
 import com.tami.tareas.View.menus.webApps
 
 object Screen {
     const val Menu = "menu"
     const val Webs = "webs"
     const val Horario = "horario"
+    const val Veriones = "Versiones"
 }
 
 @Composable
@@ -48,6 +50,9 @@ fun appNavigation(paddingValues: PaddingValues) {
         composable (Screen.Horario){
             horario(Modifier.padding(paddingValues), navController = navController)
         }
+        composable (Screen.Veriones) {
+            registerVersions(Modifier.padding(paddingValues), navController = navController)
+        }
     }
 }
 
@@ -66,6 +71,10 @@ fun menu(modifier: Modifier, navController: NavController) {
             Box(modifier = Modifier.padding(16.dp)){
                 Horario(Modifier.fillMaxWidth().height(100.dp), navController)
             }
+            Box(modifier = Modifier.padding(16.dp)){
+                registroDeVersiones(Modifier.fillMaxWidth().height(100.dp), navController)
+            }
+
         }
     }
 
@@ -107,3 +116,22 @@ fun Horario(modifier: Modifier, navController: NavController) {
         }
     }
 }
+
+@Composable
+fun registroDeVersiones(modifier: Modifier, navController: NavController) {
+
+    Card (modifier= modifier, onClick = {navController.navigate(Screen.Veriones)}){
+        Row (
+            Modifier.fillMaxSize(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center,
+        ){
+            Text(
+                text = "📝Versiones",
+                textAlign = TextAlign.Center,
+                fontSize = 50.sp
+            )
+        }
+    }
+}
+

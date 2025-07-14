@@ -30,13 +30,15 @@ import com.tami.tareas.View.web
 
 @Composable
 fun horario(modifier:Modifier, navController: NavHostController) {
-    Column (modifier = modifier){
-        Box(modifier = Modifier.padding(16.dp)){
-            Image(modifier)
-        }
+    LazyColumn (modifier = modifier){
+        item {
+            Box(modifier = Modifier.padding(5.dp)){
+                Image(modifier)
+            }
 
-        Box(modifier = Modifier.padding(16.dp)){
-            backHorario(Modifier.fillMaxWidth().height(100.dp), navController)
+            Box(modifier = Modifier.padding(16.dp)){
+                backHorario(Modifier.fillMaxWidth().height(100.dp), navController)
+            }
         }
 
     }
@@ -45,7 +47,7 @@ fun horario(modifier:Modifier, navController: NavHostController) {
 //la imagen del horario
 @Composable
 fun Image(modifier: Modifier){
-    LazyRow (modifier = modifier.fillMaxWidth().height(500.dp) , verticalAlignment = Alignment.CenterVertically, horizontalArrangement =  Arrangement.Center){
+    LazyRow (modifier = modifier.fillMaxWidth().height(400.dp) , verticalAlignment = Alignment.CenterVertically, horizontalArrangement =  Arrangement.Center){
         item {
             Box(modifier = Modifier.padding(16.dp), contentAlignment = Alignment.Center ){
                 Image(painter = painterResource(id = R.drawable.horario), contentDescription = "Horario")
