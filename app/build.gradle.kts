@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
+  
 }
 
 android {
@@ -65,7 +67,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-
+    implementation(libs.dagger) // Example Dagger version
+    ksp(libs.dagger.compiler)
 
     // --- Navegación de Compose ---
     // ¡SOLO UNA VEZ! Esta es la clave para 'composable'
@@ -95,6 +98,20 @@ dependencies {
     // Kotlinx Coroutines (for async operations)
     implementation (libs.kotlinx.coroutines.core)
     implementation (libs.kotlinx.coroutines.android)
+    //ViewModel and lifecycle
+    implementation (libs.androidx.lifecycle.viewmodel.ktx.v281)
+    implementation (libs.androidx.lifecycle.runtime.ktx.v281)
+
+    //OMG IS THE HILT
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+    implementation (libs.androidx.hilt.navigation.compose)
 
 
+
+    implementation(libs.kotlin.stdlib)
+
+
+    implementation(libs.dagger.v2481)
+    ksp(libs.dagger.compiler.v2481)
 }

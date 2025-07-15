@@ -22,6 +22,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.composable
+import com.tami.tareas.View.menus.Lista.listaUi
 import com.tami.tareas.View.menus.horario
 import com.tami.tareas.View.menus.registerVersions
 import com.tami.tareas.View.menus.webApps
@@ -42,7 +43,9 @@ fun appNavigation(paddingValues: PaddingValues) {
         startDestination = Screen.Menu
     ){
         composable(Screen.Menu){
-            menu(Modifier.fillMaxSize().padding(paddingValues), navController = navController)
+            menu(Modifier
+                .fillMaxSize()
+                .padding(paddingValues), navController = navController)
         }
         composable(Screen.Webs){
             webApps(Modifier.padding(paddingValues), navController = navController)
@@ -53,6 +56,10 @@ fun appNavigation(paddingValues: PaddingValues) {
         composable (Screen.Veriones) {
             registerVersions(Modifier.padding(paddingValues), navController = navController)
         }
+        composable (Screen.Veriones) {
+            listaUi(Modifier.padding(paddingValues), navController = navController)
+        }
+
     }
 }
 
@@ -66,13 +73,24 @@ fun menu(modifier: Modifier, navController: NavController) {
         item {
 
             Box(modifier = Modifier.padding(16.dp)){
-                web(Modifier.fillMaxWidth().height(100.dp), navController)
+                web(Modifier
+                    .fillMaxWidth()
+                    .height(100.dp), navController)
             }
             Box(modifier = Modifier.padding(16.dp)){
-                Horario(Modifier.fillMaxWidth().height(100.dp), navController)
+                Horario(Modifier
+                    .fillMaxWidth()
+                    .height(100.dp), navController)
             }
             Box(modifier = Modifier.padding(16.dp)){
-                registroDeVersiones(Modifier.fillMaxWidth().height(100.dp), navController)
+                lista(Modifier
+                    .fillMaxWidth()
+                    .height(100.dp), navController)
+            }
+            Box(modifier = Modifier.padding(16.dp)){
+                registroDeVersiones(Modifier
+                    .fillMaxWidth()
+                    .height(100.dp), navController)
             }
 
         }
@@ -110,6 +128,24 @@ fun Horario(modifier: Modifier, navController: NavController) {
         ){
             Text(
                 text = "🕛Horario",
+                textAlign = TextAlign.Center,
+                fontSize = 50.sp
+            )
+        }
+    }
+}
+
+@Composable
+fun lista(modifier: Modifier, navController: NavController) {
+
+    Card (modifier= modifier, onClick = {navController.navigate(Screen.Veriones)}){
+        Row (
+            Modifier.fillMaxSize(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center,
+        ){
+            Text(
+                text = "📝Versiones",
                 textAlign = TextAlign.Center,
                 fontSize = 50.sp
             )
