@@ -23,6 +23,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.composable
 import com.tami.tareas.View.menus.Lista.listaUi
+import com.tami.tareas.View.menus.Tareas.IUTareas
 import com.tami.tareas.View.menus.horario
 import com.tami.tareas.View.menus.registerVersions
 import com.tami.tareas.View.menus.webApps
@@ -31,7 +32,9 @@ object Screen {
     const val Menu = "menu"
     const val Webs = "webs"
     const val Horario = "horario"
+    const val Lista = "Lista"
     const val Veriones = "Versiones"
+    const val Tareas = "Tareas"
 }
 
 @Composable
@@ -56,8 +59,11 @@ fun appNavigation(paddingValues: PaddingValues) {
         composable (Screen.Veriones) {
             registerVersions(Modifier.padding(paddingValues), navController = navController)
         }
-        composable (Screen.Veriones) {
+        composable (Screen.Lista) {
             listaUi(Modifier.padding(paddingValues), navController = navController)
+        }
+        composable (Screen.Tareas) {
+            IUTareas(Modifier.padding(paddingValues), navController = navController)
         }
 
     }
@@ -138,14 +144,14 @@ fun Horario(modifier: Modifier, navController: NavController) {
 @Composable
 fun lista(modifier: Modifier, navController: NavController) {
 
-    Card (modifier= modifier, onClick = {navController.navigate(Screen.Veriones)}){
+    Card (modifier= modifier, onClick = {navController.navigate(Screen.Lista)}){
         Row (
             Modifier.fillMaxSize(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center,
         ){
             Text(
-                text = "📝Versiones",
+                text = "📝Lista",
                 textAlign = TextAlign.Center,
                 fontSize = 50.sp
             )
@@ -171,3 +177,19 @@ fun registroDeVersiones(modifier: Modifier, navController: NavController) {
     }
 }
 
+@Composable
+fun Tareas(modifier: Modifier, navController: NavController){
+    Card (modifier= modifier, onClick = {navController.navigate(Screen.Tareas)}){
+        Row (
+            Modifier.fillMaxSize(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center,
+        ){
+            Text(
+                text = "📝Versiones",
+                textAlign = TextAlign.Center,
+                fontSize = 50.sp
+            )
+        }
+    }
+}

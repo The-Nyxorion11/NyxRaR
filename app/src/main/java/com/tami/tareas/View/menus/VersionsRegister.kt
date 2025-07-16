@@ -40,11 +40,17 @@ fun texto(){
             "\n -Se creo la app" +
             "\n -Se agrego el Horario" +
             "\n" +
-            "\n VERSION 1.1.0" +
+            "\nVERSION 1.1.0:" +
             "\n -Se agrego ChatGPT a la web" +
             "\n -Se agrego el registro de versiones" +
             "\n -Se cambio el nombre de la app" +
-            "\n -Se arreglaron bugs",
+            "\n -Se arreglaron bugs" +
+            "\n"+
+            "\nVERSION 1.2.0:" +
+            "\n -Se Agrego la lista" +
+            "\n -Se agrego el room",
+
+
         fontSize = 25.sp)
 }
 

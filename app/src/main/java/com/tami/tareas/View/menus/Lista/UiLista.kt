@@ -11,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableDoubleStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -26,12 +25,12 @@ import androidx.navigation.NavHostController
 @Composable
 fun listaUi(modifier: Modifier, navController: NavHostController) {
     Column (modifier = modifier){
-        listado()
+        listado(modifier)
     }
 }
 
 @Composable
-fun listado() {
+fun listado(modifier: Modifier) {
     var number by rememberSaveable { mutableIntStateOf(1) }
     var text by rememberSaveable { mutableStateOf("") }
     val context = LocalContext.current
@@ -49,11 +48,11 @@ fun listado() {
     }
 
 
-    Column {
+    Column{
         TextField(
             value = text,
             onValueChange = { Unit -> text = Unit},
-            modifier = Modifier.fillMaxWidth().height(100.dp)
+            modifier = modifier.fillMaxWidth().height(500.dp),
         )
 
         Button(onClick = {
@@ -62,8 +61,10 @@ fun listado() {
             viewModel.Savelista(content)
 
             Toast.makeText(context, "Guardado exitosamente", Toast.LENGTH_SHORT).show()
-        }) {
+        }, modifier = modifier.height(100.dp).fillMaxWidth()) {
+
             Text(text = "Guardar")
+
         }
     }
 }
