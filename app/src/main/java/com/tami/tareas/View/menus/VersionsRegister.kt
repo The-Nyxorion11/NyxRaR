@@ -48,7 +48,11 @@ fun texto(){
             "\n"+
             "\nVERSION 1.2.0:" +
             "\n -Se Agrego la lista" +
-            "\n -Se agrego el room",
+            "\n -Se agrego el room" +
+            "\n" +
+            "\nBugfix 1.2.1:" +
+            "\n -Se arreglaron bugs" +
+            "\n -Se cambio el icono de esta activity",
 
 
         fontSize = 25.sp)

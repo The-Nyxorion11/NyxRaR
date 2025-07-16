@@ -4,6 +4,7 @@ import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -20,6 +21,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import java.nio.file.WatchEvent
 
 
 @Composable
@@ -52,7 +54,7 @@ fun listado(modifier: Modifier) {
         TextField(
             value = text,
             onValueChange = { Unit -> text = Unit},
-            modifier = modifier.fillMaxWidth().height(500.dp),
+            modifier = Modifier.fillMaxWidth().height(450.dp).padding(10.dp),
         )
 
         Button(onClick = {
@@ -61,7 +63,7 @@ fun listado(modifier: Modifier) {
             viewModel.Savelista(content)
 
             Toast.makeText(context, "Guardado exitosamente", Toast.LENGTH_SHORT).show()
-        }, modifier = modifier.height(100.dp).fillMaxWidth()) {
+        }, modifier = Modifier.height(100.dp).fillMaxWidth()) {
 
             Text(text = "Guardar")
 

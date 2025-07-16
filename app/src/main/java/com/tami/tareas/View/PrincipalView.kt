@@ -169,7 +169,7 @@ fun registroDeVersiones(modifier: Modifier, navController: NavController) {
             horizontalArrangement = Arrangement.Center,
         ){
             Text(
-                text = "📝Versiones",
+                text = "👾Versiones",
                 textAlign = TextAlign.Center,
                 fontSize = 50.sp
             )
