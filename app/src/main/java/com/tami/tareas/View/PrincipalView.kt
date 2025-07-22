@@ -94,6 +94,11 @@ fun menu(modifier: Modifier, navController: NavController) {
                     .height(100.dp), navController)
             }
             Box(modifier = Modifier.padding(16.dp)){
+                Tareas(Modifier
+                    .fillMaxWidth()
+                    .height(100.dp), navController)
+            }
+            Box(modifier = Modifier.padding(16.dp)){
                 registroDeVersiones(Modifier
                     .fillMaxWidth()
                     .height(100.dp), navController)
@@ -186,7 +191,7 @@ fun Tareas(modifier: Modifier, navController: NavController){
             horizontalArrangement = Arrangement.Center,
         ){
             Text(
-                text = "📝Versiones",
+                text = "✍️Tareas",
                 textAlign = TextAlign.Center,
                 fontSize = 50.sp
             )

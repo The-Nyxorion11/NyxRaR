@@ -52,7 +52,12 @@ fun texto(){
             "\n" +
             "\nBugfix 1.2.1:" +
             "\n -Se arreglaron bugs" +
-            "\n -Se cambio el icono de esta activity",
+            "\n" +
+            "\nVERSION 1.3.0" +
+            "\n -Se le agreo un boton de exit a la lista" +
+            "\n -Se agregaron las tareas" +
+            "\n -Se Arreglo el bug del icono",
+
 
 
         fontSize = 25.sp)

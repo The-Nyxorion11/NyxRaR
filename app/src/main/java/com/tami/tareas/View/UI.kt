@@ -45,7 +45,7 @@ fun uiSistem(){
         topBar = {
             TopAppBar(
                 title = { Text(
-                    text = "Menu NyxApp 1.2.1",
+                    text = "Menu NyxApp 1.3.0",
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center
                     ) },
