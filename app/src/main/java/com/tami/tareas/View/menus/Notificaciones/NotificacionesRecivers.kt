@@ -38,7 +38,9 @@ class NotificacionesRecivers: BroadcastReceiver() {
         val n = NotificationCompat.Builder(context, "Tareas")
             .setContentTitle(titulo)//titulo
             .setContentText(mensaje)//texto
-            .setSmallIcon(R.drawable.nyxappricon)//icono
+            .setSmallIcon(R.drawable.nyxappricon)//iconohh
+            .setPriority(NotificationCompat.PRIORITY_HIGH) // 🔥 Esto es clave
+            .setDefaults(NotificationCompat.DEFAULT_ALL)
             .build()
 
 

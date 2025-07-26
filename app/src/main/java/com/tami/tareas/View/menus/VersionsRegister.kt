@@ -56,7 +56,11 @@ fun texto(){
             "\nVERSION 1.3.0" +
             "\n -Se le agreo un boton de exit a la lista" +
             "\n -Se agregaron las tareas" +
-            "\n -Se Arreglo el bug del icono",
+            "\n -Se Arreglo el bug del icono" +
+            "\n" +
+            "\nVERSION 1.4.0" +
+            "\n -Se Arrego el blog de notas" +
+            "\n -Se Arreglaron bugs",
 
 
 

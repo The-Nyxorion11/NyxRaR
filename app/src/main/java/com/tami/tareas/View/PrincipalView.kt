@@ -12,16 +12,25 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
+import com.tami.tareas.View.menus.BlogDeNotas.NotasClass
+import com.tami.tareas.View.menus.BlogDeNotas.NotasLista
+import com.tami.tareas.View.menus.BlogDeNotas.UiNotes
+import com.tami.tareas.View.menus.BlogDeNotas.notasUseViewModel
 import com.tami.tareas.View.menus.Lista.listaUi
 import com.tami.tareas.View.menus.Tareas.IUTareas
 import com.tami.tareas.View.menus.horario
@@ -35,11 +44,19 @@ object Screen {
     const val Lista = "Lista"
     const val Veriones = "Versiones"
     const val Tareas = "Tareas"
+    const val Notas = "Notas"
+    const val NotasLista = "NotasLista"
 }
+
+
+
 
 @Composable
 fun appNavigation(paddingValues: PaddingValues) {
     val navController = rememberNavController()
+    //room de las notas
+    val viewModel: notasUseViewModel = hiltViewModel()
+    val notas by viewModel.date.collectAsState()
 
     NavHost(
         navController = navController,
@@ -65,7 +82,28 @@ fun appNavigation(paddingValues: PaddingValues) {
         composable (Screen.Tareas) {
             IUTareas(Modifier.padding(paddingValues), navController = navController)
         }
+        composable (Screen.Notas) {
+            NotasLista(Modifier.padding(paddingValues), navController = navController)
+        }
 
+
+
+
+        //esta es para motrar las notas
+        composable(
+            route = "${Screen.NotasLista}/{id}/{titulo}/{contenido}",
+            arguments = listOf(
+                navArgument("id") { type = NavType.IntType },
+                navArgument("titulo") { type = NavType.StringType },
+                navArgument("contenido") { type = NavType.StringType }
+            )
+        ) { backStackEntry ->
+            val id = backStackEntry.arguments?.getInt("id") ?: -1
+            val titulo = backStackEntry.arguments?.getString("titulo") ?: ""
+            val contenido = backStackEntry.arguments?.getString("contenido") ?: ""
+
+            UiNotes(Modifier.padding(paddingValues), navController, NotasClass(id, titulo, contenido))
+        }
     }
 }
 
@@ -99,10 +137,16 @@ fun menu(modifier: Modifier, navController: NavController) {
                     .height(100.dp), navController)
             }
             Box(modifier = Modifier.padding(16.dp)){
+                Notas(Modifier
+                    .fillMaxWidth()
+                    .height(100.dp), navController)
+            }
+            Box(modifier = Modifier.padding(16.dp)){
                 registroDeVersiones(Modifier
                     .fillMaxWidth()
                     .height(100.dp), navController)
             }
+
 
         }
     }
@@ -192,6 +236,23 @@ fun Tareas(modifier: Modifier, navController: NavController){
         ){
             Text(
                 text = "✍️Tareas",
+                textAlign = TextAlign.Center,
+                fontSize = 50.sp
+            )
+        }
+    }
+}
+
+@Composable
+fun Notas(modifier: Modifier, navController: NavController){
+    Card (modifier= modifier, onClick = {navController.navigate(Screen.Notas)}){
+        Row (
+            Modifier.fillMaxSize(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center,
+        ){
+            Text(
+                text = "🗒Notas",
                 textAlign = TextAlign.Center,
                 fontSize = 50.sp
             )

@@ -60,7 +60,8 @@ fun lista(modifier: Modifier, navController: NavHostController) {
             value = text,
             onValueChange = { newText -> text = newText },
             label = { Text("name") },
-            modifier = modifier.fillMaxWidth()
+            modifier = modifier.fillMaxWidth(),
+            singleLine = true
         )
         Spacer(modifier = Modifier.height(15.dp))
         Row(modifier.fillMaxWidth()) {
@@ -70,7 +71,8 @@ fun lista(modifier: Modifier, navController: NavHostController) {
                 value = horas,
                 onValueChange = { newText -> horas = newText },
                 label = { Text("Horas") },
-                modifier = modifier.width(150.dp)
+                modifier = modifier.width(150.dp),
+                singleLine = true
             )
 
             Spacer(modifier = Modifier.width(45.dp))
@@ -80,7 +82,8 @@ fun lista(modifier: Modifier, navController: NavHostController) {
                 value = minutos,
                 onValueChange = { newText -> minutos= newText },
                 label = { Text("Minutos") },
-                modifier = modifier.width(150.dp)
+                modifier = modifier.width(150.dp),
+                singleLine = true
             )
         }
         val tiempoTotal = horas.padStart(2, '0') + minutos.padStart(2, '0')
