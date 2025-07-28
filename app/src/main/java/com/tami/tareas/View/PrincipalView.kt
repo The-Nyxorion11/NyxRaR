@@ -32,6 +32,8 @@ import com.tami.tareas.View.menus.BlogDeNotas.NotasLista
 import com.tami.tareas.View.menus.BlogDeNotas.UiNotes
 import com.tami.tareas.View.menus.BlogDeNotas.notasUseViewModel
 import com.tami.tareas.View.menus.Lista.listaUi
+import com.tami.tareas.View.menus.Noticias.UINoticiaCompleta
+import com.tami.tareas.View.menus.Noticias.UINoticias
 import com.tami.tareas.View.menus.Tareas.IUTareas
 import com.tami.tareas.View.menus.horario
 import com.tami.tareas.View.menus.registerVersions
@@ -45,7 +47,11 @@ object Screen {
     const val Veriones = "Versiones"
     const val Tareas = "Tareas"
     const val Notas = "Notas"
+    const val Noticias = "Noticias"
+
+    //especiales
     const val NotasLista = "NotasLista"
+    const val NoticasCompletas = "NoticasCompletas"
 }
 
 
@@ -85,13 +91,16 @@ fun appNavigation(paddingValues: PaddingValues) {
         composable (Screen.Notas) {
             NotasLista(Modifier.padding(paddingValues), navController = navController)
         }
+        composable (Screen.Noticias) {
+            UINoticias(Modifier.padding(paddingValues), navController = navController)
+        }
 
 
 
 
         //esta es para motrar las notas
         composable(
-            route = "${Screen.NotasLista}/{id}/{titulo}/{contenido}",
+            route = "${Screen.NoticasCompletas}/{id}/{titulo}/{contenido}",
             arguments = listOf(
                 navArgument("id") { type = NavType.IntType },
                 navArgument("titulo") { type = NavType.StringType },
@@ -104,6 +113,38 @@ fun appNavigation(paddingValues: PaddingValues) {
 
             UiNotes(Modifier.padding(paddingValues), navController, NotasClass(id, titulo, contenido))
         }
+
+        //esta es para motrar las noticias completas
+        composable(
+            route = "${Screen.NoticasCompletas}/{title}/{pubDate}/{link}/{content}/{description}/{image_url}",
+            arguments = listOf(
+                navArgument("title") { type = NavType.StringType },
+                navArgument("pubDate") { type = NavType.StringType },
+                navArgument("link") { type = NavType.StringType },
+                navArgument("content") { type = NavType.StringType },
+                navArgument("description") { type = NavType.StringType },
+                navArgument("image_url") { type = NavType.StringType }
+            )
+        ) { backStackEntry ->
+            val title = backStackEntry.arguments?.getString("title") ?: ""
+            val pubDate = backStackEntry.arguments?.getString("pubDate") ?: ""
+            val link = backStackEntry.arguments?.getString("link") ?: ""
+            val content = backStackEntry.arguments?.getString("content") ?: ""
+            val description = backStackEntry.arguments?.getString("description") ?: ""
+            val imageUrl = backStackEntry.arguments?.getString("image_url") ?: ""
+
+            UINoticiaCompleta(
+                Modifier.padding(paddingValues),
+                navController,
+                title = title,
+                pubDate = pubDate,
+                link = link,
+                content = content,
+                description = description,
+                imageUrl = imageUrl
+            )
+        }
+
     }
 }
 
@@ -142,11 +183,15 @@ fun menu(modifier: Modifier, navController: NavController) {
                     .height(100.dp), navController)
             }
             Box(modifier = Modifier.padding(16.dp)){
+                Noticias(Modifier
+                    .fillMaxWidth()
+                    .height(100.dp), navController)
+            }
+            Box(modifier = Modifier.padding(16.dp)){
                 registroDeVersiones(Modifier
                     .fillMaxWidth()
                     .height(100.dp), navController)
             }
-
 
         }
     }
@@ -253,6 +298,23 @@ fun Notas(modifier: Modifier, navController: NavController){
         ){
             Text(
                 text = "🗒Notas",
+                textAlign = TextAlign.Center,
+                fontSize = 50.sp
+            )
+        }
+    }
+}
+
+@Composable
+fun Noticias(modifier: Modifier, navController: NavController){
+    Card (modifier= modifier, onClick = {navController.navigate(Screen.Noticias)}){
+        Row (
+            Modifier.fillMaxSize(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center,
+        ){
+            Text(
+                text = "📰️Noticias",
                 textAlign = TextAlign.Center,
                 fontSize = 50.sp
             )

@@ -60,7 +60,11 @@ fun texto(){
             "\n" +
             "\nVERSION 1.4.0" +
             "\n -Se Arrego el blog de notas" +
-            "\n -Se Arreglaron bugs",
+            "\n -Se Arreglaron bugs" +
+            "\n" +
+            "\nVERSION 1.5.0" +
+            "\n -Se agrego el apartado de Noticias" +
+            "\n -Comienza la era de las apis",
 
 
 

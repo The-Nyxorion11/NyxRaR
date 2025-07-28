@@ -114,4 +114,11 @@ dependencies {
 
     implementation(libs.dagger.v2481)
     ksp(libs.dagger.compiler.v2481)
+
+    //apis
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+
+    //url imagenes
+    implementation(libs.coil.compose)
 }
